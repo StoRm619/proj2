@@ -1,0 +1,37 @@
+/* .card {
+    margin-top: 20px;
+} */
+
+#card-1 {
+    margin-top: 30px;
+}
+
+#card-2 {
+    margin-top: 30px;
+}
+
+#map {
+    padding: 0px;
+}
+
+#signUpBusi {
+    margin-top: 30px;
+    border-radius: 8px;
+    /* opacity:0.9; */
+}
+
+#signUpUser {
+    margin-top: 30px;
+    border-radius: 8px;
+    /* opacity:0.9; */
+}
+
+#restuarant {
+    background-image: url(../images/black-bean-close-up-cooked-1640774.jpg);
+    background-size: cover;
+}
+
+#account {
+    background-image: url(../images/black-bean-close-up-cooked-1640774.jpg);
+    background-size: cover;
+}

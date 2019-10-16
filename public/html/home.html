@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Restaurant Row</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+
+<body>
+  <!-- NAV BAR-->
+  <nav class="#212121 grey darken-4">
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo white-text text-darken-2"><i class="material-icons">restaurant</i>Logo</a>
+      <ul class="right">
+        <li><a href="sass.html"><i class="material-icons white-text text-darken-2">search</i></a></li>
+        <li><a href="signupBusi.html"><i class="material-icons white-text text-darken-2">shop</i></a></li>
+        <li><a href="collapsible.html"><i class="material-icons white-text text-darken-2">refresh</i></a></li>
+        <li><a href="mobile.html"><i class="material-icons white-text text-darken-2">more_vert</i></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- FIRST IMAGE BAR-->
+  <div id="index-banner">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <h1 class="header center grey-text text-lighten-2">Restaurant Row</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="section">
+      <!---------- FORM ------------->
+      <div class="row">
+
+        <div class="col s7 push-s5 #212121 grey darken-3 z-depth-5" id="right-form">
+
+        </div>
+
+        <!--GOOGLE MAP-->
+        <div class="col s5 pull-s7 left align" id="left-form"><span class="flow-text"></span>
+          <div>
+            <div>
+              <h6>Search cities...</h6>
+            </div>
+
+            <input class="form-control-default" type="text" id="zipCode" placeholder="Enter City Name"></input>
+            <!---zip code submit button--->
+            <button type="submit" class="btn btn-success btn-md" id="search">
+              <span aria-hidden="true"></span>Search by City
+            </button>
+
+            <!--Google map-->
+            <div id="map-container-google-2" class="col s5 pull-s7">
+
+              <!-- The slide-out panel for showing place details -->
+
+
+
+              <div id="map"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 blog-container">
+      </div>
+      <table class="striped highlight">
+        <h6>Results</h6>
+        <thead class="#212121 grey darken-3">
+          <tr>
+            <th>Name</th>
+            <th>Item Name</th>
+            <th>Item Price</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Pizza Hut</td>
+            <td>Pizza</td>
+            <td>$5.00</td>
+          </tr>
+          <tr>
+            <td>Burger Master</td>
+            <td>cheese burger</td>
+            <td>$3.76</td>
+          </tr>
+          <tr>
+            <td>Rubios</td>
+            <td>taco</td>
+            <td>$2.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- last image -->
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light white-text"> Restaurant Row is a local site dedicated to restaurants.We invite restaurant owners and everyday patrons to search for restaurants in their area. Restaurants can post details about their establishment, photos, and even their menus. 
+            To get started sign up for an account and search for your restaurant on the website to see if it is listed or add your restaurant.</h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img
+        src="https://images.pexels.com/photos/54455/cook-food-kitchen-eat-54455.jpeg?cs=srgb&dl=dinner-egg-flatlay-54455.jpg&fm=jpg"
+        class="materialbox responsive-img card" alt="Unsplashed background img 2">
+    </div>
+  </div>
+
+
+  <!--FOOTER-->
+  <footer class="page-footer #212121 grey darken-4">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Restaurant Row</h5>
+          <p class="grey-text text-lighten-4">Text</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      </div>
+    </div>
+  </footer>
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="../js/materialize.js"></script>
+  <script src="../js/init.js"></script>
+  <script>
+  $(document).ready(function() {
+  /* global moment */
+
+  // blogContainer holds all of our posts
+  var blogContainer = $(".blog-container");
+  var postCategorySelect = $("#category");
+  // Click events for the edit and delete buttons
+
+  $(document).on("click", "button.edit", handlePostEdit);
+  // Variable to hold our posts
+  var posts;
+
+  // The code below handles the case where we want to get blog posts for a specific author
+  // Looks for a query param in the url for author_id
+  var url = window.location.search;
+  var authorId;
+    getPosts();
+  // This function grabs posts from the database and updates the view
+  function getPosts(author) {
+    authorId = author || "";
+    if (authorId) {
+      authorId = "/?author_id=" + authorId;
+    }
+    $.get("/api/business_data" + authorId, function(data) {
+      console.log("business", data);
+      posts = data;
+      if (!posts || !posts.length) {
+        displayEmpty(author);
+      }
+      else {
+        initializeRows();
+      }
+    });
+  }
+
+
+
+  // InitializeRows handles appending all of our constructed post HTML inside blogContainer
+  function initializeRows() {
+    blogContainer.empty();
+    var postsToAdd = [];
+    for (var i = 0; i < posts.length; i++) {
+      postsToAdd.push(createNewRow(posts[i]));
+    }
+    blogContainer.append(postsToAdd);
+  }
+
+  // This function constructs a post's HTML
+  function createNewRow(businessPG) {
+    var newPostCard = $("<div>");
+    newPostCard.addClass("card");
+    var newPostCardHeading = $("<div>");
+    newPostCardHeading.addClass("card-header");
+    var editBtn = $("<button>");
+    editBtn.text("EDIT");
+    editBtn.addClass("edit btn btn-info");
+    var newPostTitle = $("<h2>");
+    var newPostDate = $("<small>");
+    var newPostAuthor = $("<h5>");
+    newPostAuthor.text("Written by: " + businessPG.businessName);
+    newPostAuthor.css({
+      float: "right",
+      color: "blue",
+      "margin-top":
+      "-10px"
+    });
+    var newPostCardBody = $("<div>");
+    newPostCardBody.addClass("card-body");
+    var newPostBody = $("<p>");
+    newPostTitle.text(businessPG.businessName + " ");
+    newPostBody.text(businessPG.menu);
+  
+    newPostTitle.append(newPostDate);
+
+    newPostCardHeading.append(editBtn);
+    newPostCardHeading.append(newPostTitle);
+    newPostCardHeading.append(newPostAuthor);
+    newPostCardBody.append(newPostBody);
+    newPostCard.append(newPostCardHeading);
+    newPostCard.append(newPostCardBody);
+    newPostCard.data("businessPG", businessPG);
+    return newPostCard;
+  }
+
+
+  // This function figures out which post we want to edit and takes it to the appropriate url
+  function handlePostEdit() {
+    var currentPost = $(this)
+      .parent()
+      .parent()
+      .data("businessPG");
+    window.location.href = "/business?business_id=" + currentPost.id;
+  }
+});
+</script>
+
+</body>
+
+</html>
